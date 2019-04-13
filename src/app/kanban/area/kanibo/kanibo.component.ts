@@ -7,6 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class KaniboComponent implements OnInit {
   @Input() kanibo: KaniboComponent;
+  private showDescription: boolean;
 
   constructor() { }
 

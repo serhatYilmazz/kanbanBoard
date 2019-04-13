@@ -1,5 +1,8 @@
 <div class="col-xs-12">
   <div class="border">
-    {{kanibo.title}}
+    <div class="kanibo heading">
+      {{kanibo.title}}
+    </div>
+    <div class="kanibo body" *ngIf="showDescription">{{kanibo.description}}</div>
   </div>
 </div>
