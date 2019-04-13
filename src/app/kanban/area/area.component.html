@@ -2,5 +2,5 @@
   <div class="panel-heading text-center">
     <h2 class="">{{section.title}}</h2>
   </div>
-  <app-kanibo *ngFor="let item of section.list" [kanibo]="item"></app-kanibo>
+  <app-kanibo *ngFor="let item of section.list" [kanibo]="item" appDraggable></app-kanibo>
 </div>

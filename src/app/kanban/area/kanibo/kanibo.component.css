@@ -1,3 +1,8 @@
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(100px) }
+  to { opacity: 1; transform: translate(0px, 0px)}
+}
+
 .border {
   border: 1px solid black;
   padding: 20px;
@@ -14,7 +19,20 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
-.heading {
+.kanibo-heading.show {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;;
+  border-left: 1px solid black;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+}
+
+.kanibo-body.show {
+  animation: fadeIn 1s;
+}
+
+.kanibo-heading {
   padding: 10px 15px;
   border-bottom: 1px solid transparent;
   border-top-left-radius: 3px;
@@ -23,13 +41,11 @@
   transition: all 500ms ease-in-out;
 }
 
-.heading:hover {
+.kanibo-heading:hover {
   background-color: #ffefef;
   font-size: 1.5em;
   transition: font-size 1s, border 300ms, text-indent 500ms ease-in-out;
-  -webkit-border-radius: 40px;
-  -moz-border-radius: 40px;
   border-radius: 40px;
   border: 1px dashed black;
-  text-indent: 20%;
+  text-indent: 10%;
 }

@@ -5,6 +5,7 @@ import {StoreModule} from '@ngrx/store';
 import { AppComponent } from './app.component';
 import {KanbanModule} from './kanban/kanban.module';
 import {reducers} from './store/app.reducers';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {reducers} from './store/app.reducers';
   imports: [
     BrowserModule,
     KanbanModule,
+    SharedModule,
     StoreModule.forRoot(reducers)
   ],
   providers: [],

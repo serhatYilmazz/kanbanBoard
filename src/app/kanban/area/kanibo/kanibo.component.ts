@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, HostBinding, HostListener, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-kanibo',
@@ -7,7 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class KaniboComponent implements OnInit {
   @Input() kanibo: KaniboComponent;
-  private showDescription: boolean;
 
   constructor() { }
 
