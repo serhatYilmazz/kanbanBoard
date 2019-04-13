@@ -1,18 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {StoreModule} from '@ngrx/store';
 
 import { AppComponent } from './app.component';
-import { AreaComponent } from './area/area.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import {KanbanModule} from './kanban/kanban.module';
+import {reducers} from './store/app.reducers';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AreaComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FlexLayoutModule
+    KanbanModule,
+    StoreModule.forRoot(reducers)
   ],
   providers: [],
   bootstrap: [AppComponent]

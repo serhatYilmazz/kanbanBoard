@@ -1,0 +1,28 @@
+:host {
+  width: 30%;
+  background-color: lightgray;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background-color: lightgray;
+  box-shadow: 7px 5px 3px gray;
+}
+
+@media screen and (max-width: 600px) {
+  :host {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+  }
+}
+
+.area-boundary {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+h2 {
+  font-family: "Comic Sans MS", cursive, sans-serif
+}

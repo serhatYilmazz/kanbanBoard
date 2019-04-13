@@ -12,3 +12,19 @@
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   box-shadow:         4px 7px 6px 6px gray;
 }
+
+
+.cardList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.cardList > *:not(:last-child) {
+  box-sizing: border-box;
+}
+
+.cardListItem {
+  flex: 0 1 calc(33.3% - 32px);
+}
