@@ -12,13 +12,13 @@ export interface State {
 const initialState: State = {
   section: {
     todo: {
-      title: 'TODO',
-      list: [
-        new Kanibo('Sleep', 'Sleep in your Bed', 6),
-        new Kanibo('Eat', 'Eat in kitchen something to stay alive', 7),
-        new Kanibo('Relax', 'Relax your mind for a while', 8)
-      ],
-      order: 1,
+        title: 'TODO',
+        list: [
+          new Kanibo('Sleep', 'Sleep in your Bed', 6),
+          new Kanibo('Eat', 'Eat in kitchen something to stay alive', 7),
+          new Kanibo('Relax', 'Relax your mind for a while', 8)
+        ],
+        order: 1,
     },
 
     inProgress: {
