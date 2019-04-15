@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {KanbanModule} from './kanban/kanban.module';
 import {reducers} from './store/app.reducers';
 import {SharedModule} from './shared/shared.module';
+import {OverlayModule} from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {SharedModule} from './shared/shared.module';
   ],
   imports: [
     BrowserModule,
+    OverlayModule,
     KanbanModule,
     SharedModule,
     StoreModule.forRoot(reducers)

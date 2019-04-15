@@ -9,6 +9,7 @@
   border-radius: 20px;
   margin-bottom: 3%;
   user-select: none;
+  background-color: azure;
 }
 
 .kanibo {
@@ -48,4 +49,8 @@
   border-radius: 40px;
   border: 1px dashed black;
   text-indent: 10%;
+}
+
+.dragging {
+  border: 8px dashed black;
 }
