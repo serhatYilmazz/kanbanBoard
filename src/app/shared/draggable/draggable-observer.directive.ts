@@ -1,4 +1,4 @@
-import {Directive, ElementRef, HostBinding, HostListener, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
+import {Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {GlobalPositionStrategy, Overlay, OverlayRef} from '@angular/cdk/overlay';
 import {DraggableDirective} from './draggable.directive';
 import {TemplatePortal} from '@angular/cdk/portal';
@@ -7,7 +7,7 @@ import {TemplatePortal} from '@angular/cdk/portal';
   selector: '[appDraggableObserver]',
   exportAs: 'appDraggableObserver'
 })
-export class DraggableObserverDirective implements OnInit {
+export class DraggableObserverDirective implements OnInit, OnDestroy {
 
   private positionStrategy = new GlobalPositionStrategy();
 
@@ -52,10 +52,6 @@ export class DraggableObserverDirective implements OnInit {
       x: event.clientX - clientRect.left,
       y: event.clientY - clientRect.top
     };
-
-    console.log(event.clientY);
-    console.log(clientRect.top);
-    console.log(this.startPosition.y);
   }
 
   private onDragMove(event: PointerEvent) {
@@ -72,4 +68,10 @@ export class DraggableObserverDirective implements OnInit {
   private onDragEnd(event: PointerEvent) {
     this.overlayRef.detach();
   }
+
+  ngOnDestroy(): void {
+    this.overlayRef.dispose();
+  }
+
+
 }
