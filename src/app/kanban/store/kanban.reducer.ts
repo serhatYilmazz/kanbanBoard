@@ -1,24 +1,25 @@
 import {Kanibo} from '../area/kanibo/kanibo.model';
 import * as KanbanActions from './kanban.actions';
-import {Section} from '../section';
+import {SectionModel} from '../section.model';
 
 export interface State {
   section: {
-    [key: string]: Section
+    [key: string]: SectionModel
   };
-  taskId;
+  taskId: number;
+  selectedKanibo: Kanibo;
 }
 
 const initialState: State = {
   section: {
     todo: {
-        title: 'TODO',
-        list: [
-          new Kanibo('Sleep', 'Sleep in your Bed', 6),
-          new Kanibo('Eat', 'Eat in kitchen something to stay alive', 7),
-          new Kanibo('Relax', 'Relax your mind for a while', 8)
-        ],
-        order: 1,
+      title: 'TODO',
+      list: [
+        new Kanibo('Sleep', 'Sleep in your Bed', 6),
+        new Kanibo('Eat', 'Eat in kitchen something to stay alive', 7),
+        new Kanibo('Relax', 'Relax your mind for a while', 8)
+      ],
+      order: 1,
     },
 
     inProgress: {
@@ -39,9 +40,42 @@ const initialState: State = {
     }
   },
 
-  taskId: 9
+  taskId: 9,
+  selectedKanibo: null
 };
 
 export function kanbanReducer(state = initialState, action: KanbanActions.KanbanActions) {
-  return state;
+  switch (action.type) {
+    case KanbanActions.SELECT_KANIBO:
+      return {
+        ...state,
+        selectedKanibo: action.payload
+      };
+    case KanbanActions.MOVE_TO:
+      const movedItemSection: SectionModel = {...action.payload.sectionModel};
+      movedItemSection.list.push(state.selectedKanibo);
+
+      const newStateMoveTo = {
+        ...state.section[action.payload.sectionName],
+        list: movedItemSection
+      };
+      return {
+        ...state
+      };
+    case KanbanActions.REMOVE_FROM:
+      const removedItemSectionModel: SectionModel = {...action.payload.sectionModel};
+      const indexOfItem = removedItemSectionModel.list.indexOf(state.selectedKanibo);
+      removedItemSectionModel.list.splice(indexOfItem, 1);
+
+
+      const newStateRemoveFrom = {
+        ...state.section[action.payload.sectionName],
+        removedItemSectionModel
+      }
+      return {
+        ...state
+      }
+    default:
+      return state;
+  }
 }

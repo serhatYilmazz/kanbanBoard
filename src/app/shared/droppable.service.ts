@@ -1,5 +1,6 @@
 import {Injectable, Optional, SkipSelf} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
+import {Kanibo} from '../kanban/area/kanibo/kanibo.model';
 
 @Injectable()
 export class DroppableService {
@@ -11,6 +12,8 @@ export class DroppableService {
   private dragStartSubject = new Subject<PointerEvent>();
   private dragMoveSubject = new Subject<PointerEvent>();
   private dragEndSubject = new Subject<PointerEvent>();
+
+  private selectedKanibo: Kanibo;
 
   constructor(@SkipSelf() @Optional() private parent?: DroppableService) {
     this.dragStart$ = this.dragStartSubject.asObservable();

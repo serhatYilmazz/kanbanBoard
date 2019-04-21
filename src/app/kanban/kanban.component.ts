@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-
-import {Kanibo} from './area/kanibo/kanibo.model';
-import * as fromKanban from './store/kanban.reducer';
-import {Section} from './section';
+import * as fromApp from '../store/app.reducers';
+import * as KanbanActions from './store/kanban.actions';
 
 @Component({
   selector: 'app-kanban',
@@ -13,19 +11,27 @@ import {Section} from './section';
 export class KanbanComponent implements OnInit {
 
   sectionsName: string[];
-  sections: fromKanban.State;
+  sections;
   taskId: number;
 
-  constructor(private store: Store<fromKanban.State>) {
+  constructor(private store: Store<fromApp.AppState>) {
   }
 
   ngOnInit() {
     this.store.select('kanban').subscribe(
-      (state: fromKanban.State) => {
+      (state) => {
         console.log(state);
         this.sections = state;
         this.sectionsName = Object.keys(state.section);
       }
     );
+  }
+
+  move(section, sectionName) {
+    this.store.dispatch(new KanbanActions.MoveTo({sectionModel: section, sectionName: sectionName}));
+  }
+
+  remove(section, sectionName) {
+    this.store.dispatch(new KanbanActions.RemoveFrom({sectionModel: section, sectionName: sectionName}));
   }
 }

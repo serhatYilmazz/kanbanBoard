@@ -1,5 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Section} from '../section';
+import {Component, Input, OnInit, SkipSelf} from '@angular/core';
+import {SectionModel} from '../section.model';
+import {Kanibo} from './kanibo/kanibo.model';
+import {Store} from '@ngrx/store';
+
+import * as fromApp from '../../store/app.reducers';
+import * as KanbanActions from '../store/kanban.actions';
 
 @Component({
   selector: 'app-area',
@@ -7,8 +12,13 @@ import {Section} from '../section';
   styleUrls: ['./area.component.css']
 })
 export class AreaComponent implements OnInit {
-  @Input() section: Section;
-  constructor() { }
+  @Input() section: SectionModel;
+
+  constructor(private store: Store<fromApp.AppState>) { }
+
+  notifyElementIsSelected(item: Kanibo) {
+    this.store.dispatch(new KanbanActions.SelectKanibo(item));
+  }
 
   ngOnInit() {
   }

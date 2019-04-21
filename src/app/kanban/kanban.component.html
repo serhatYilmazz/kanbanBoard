@@ -7,6 +7,9 @@
       *ngFor="let section of sectionsName"
       [section]="sections.section[section]"
       [fxFlexOrder]=sections.section[section].order
-      appDropzone></app-area>
+      appDropzone
+      (drop)="move(sections.section[section], section)"
+      (remove)="remove(sections.section[section], section)">
+    </app-area>
   </div>
 </div>
