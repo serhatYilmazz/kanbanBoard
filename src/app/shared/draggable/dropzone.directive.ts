@@ -1,5 +1,6 @@
 import {Directive, ElementRef, EventEmitter, HostBinding, OnInit, Output, SkipSelf} from '@angular/core';
 import {DroppableService} from '../droppable.service';
+import {Kanibo} from '../../kanban/area/kanibo/kanibo.model';
 
 @Directive({
   selector: '[appDropzone]',
@@ -72,7 +73,7 @@ export class DropzoneDirective implements OnInit {
       return;
     }
     if (this.entered) {
-      this.drop.emit();
+      this.drop.emit(this);
     }
     this.activated = false;
     this.entered = false;
