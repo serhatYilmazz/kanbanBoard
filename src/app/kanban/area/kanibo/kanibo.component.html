@@ -1,8 +1,12 @@
-<div class="col-xs-12">
-  <div class="border">
-    <div class="kanibo kanibo-heading" [ngClass]="{'show': showDescription}" (click)="showDescription = !showDescription">
-      {{kanibo.title}}
-    </div>
-    <div class="kanibo kanibo-body" [ngClass]="{'show': showDescription, 'hide': !showDescription}">{{kanibo.description}}</div>
+<div class="border">
+  <div class="drag fa fa-arrows"></div>
+  <div class="kanibo kanibo-heading" [ngClass]="{'show': showDescription}" (click)="showDescription = !showDescription">
+    {{kanibo.title}}
+    <ng-content></ng-content>
   </div>
+  <div class="kanibo kanibo-body"
+       [ngClass]="{'show': showDescription, 'hide': !showDescription}">{{kanibo.description}}</div>
 </div>
+
+
+

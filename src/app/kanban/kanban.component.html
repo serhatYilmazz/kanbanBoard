@@ -3,6 +3,10 @@
     <!--<app-area [ngStyle]="{'background-image': 'linear-gradient(to right, red, #f94b00, orange)' }" [title]="'TODO'"></app-area>-->
     <!--<app-area [ngStyle]="{'background-image': 'linear-gradient(to right, #ffc557, yellow, #d9ff4c)' }" [title]="'IN PROGRESS'"></app-area>-->
     <!--<app-area [ngStyle]="{'background-image': 'linear-gradient(to right, #c9ff00, #C3FE01, #31E116)' }" [title]="'DONE'"></app-area>-->
-    <app-area *ngFor="let section of sectionsName" [section]="sections.section[section]" [fxFlexOrder]=sections.section[section].order></app-area>
+    <app-area
+      *ngFor="let section of sectionsName"
+      [section]="sections.section[section]"
+      [fxFlexOrder]=sections.section[section].order
+      appDropzone></app-area>
   </div>
 </div>

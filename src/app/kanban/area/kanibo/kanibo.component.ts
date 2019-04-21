@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Kanibo} from './kanibo.model';
 
 @Component({
   selector: 'app-kanibo',
@@ -6,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./kanibo.component.css']
 })
 export class KaniboComponent implements OnInit {
-  @Input() kanibo: KaniboComponent;
+  @Input() kanibo: Kanibo;
 
   constructor() { }
 
