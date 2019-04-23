@@ -1,6 +1,7 @@
-import {Kanibo} from '../area/kanibo/kanibo.model';
-import * as KanbanActions from './kanban.actions';
 import {SectionModel} from '../section.model';
+
+import * as KanbanActions from './kanban.actions';
+import {Kanibo} from '../kanban-area/area/kanibo/kanibo.model';
 
 export interface State {
   section: {
@@ -56,7 +57,7 @@ export function kanbanReducer(state = initialState, action: KanbanActions.Kanban
       movedItemSection.list.push(state.selectedKanibo);
 
       const newStateMoveTo = {
-        ...state.section[action.payload.sectionName],
+        ...state.section[action.payload.sectionName].list,
         list: movedItemSection
       };
       return {
@@ -71,10 +72,21 @@ export function kanbanReducer(state = initialState, action: KanbanActions.Kanban
       const newStateRemoveFrom = {
         ...state.section[action.payload.sectionName],
         removedItemSectionModel
-      }
+      };
       return {
         ...state
-      }
+      };
+    case KanbanActions.ADD_KANIBO:
+      const addTodo = {...state.section.todo};
+      addTodo.list.push(action.payload);
+
+      const newAddState = {
+        ...state.section.todo.list,
+        list: addTodo
+      };
+      return {
+        ...state
+      };
     default:
       return state;
   }

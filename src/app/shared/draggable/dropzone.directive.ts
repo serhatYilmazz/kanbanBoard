@@ -1,6 +1,5 @@
 import {Directive, ElementRef, EventEmitter, HostBinding, OnInit, Output, SkipSelf} from '@angular/core';
 import {DroppableService} from '../droppable.service';
-import {Kanibo} from '../../kanban/area/kanibo/kanibo.model';
 
 @Directive({
   selector: '[appDropzone]',

@@ -8,30 +8,6 @@ import * as KanbanActions from './store/kanban.actions';
   templateUrl: './kanban.component.html',
   styleUrls: ['./kanban.component.css']
 })
-export class KanbanComponent implements OnInit {
+export class KanbanComponent {
 
-  sectionsName: string[];
-  sections;
-  taskId: number;
-
-  constructor(private store: Store<fromApp.AppState>) {
-  }
-
-  ngOnInit() {
-    this.store.select('kanban').subscribe(
-      (state) => {
-        console.log(state);
-        this.sections = state;
-        this.sectionsName = Object.keys(state.section);
-      }
-    );
-  }
-
-  move(section, sectionName) {
-    this.store.dispatch(new KanbanActions.MoveTo({sectionModel: section, sectionName: sectionName}));
-  }
-
-  remove(section, sectionName) {
-    this.store.dispatch(new KanbanActions.RemoveFrom({sectionModel: section, sectionName: sectionName}));
-  }
 }
