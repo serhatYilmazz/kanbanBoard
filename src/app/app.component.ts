@@ -11,6 +11,9 @@ export class AppComponent implements OnInit {
   title = 'DragAndDrop';
 
   ngOnInit(): void {
-
+    firebase.initializeApp({
+      apiKey: '',
+      authDomain: ''
+    });
   }
 }

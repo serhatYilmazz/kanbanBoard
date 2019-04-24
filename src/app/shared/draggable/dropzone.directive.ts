@@ -72,7 +72,7 @@ export class DropzoneDirective implements OnInit {
       return;
     }
     if (this.entered) {
-      this.drop.emit(this);
+      this.drop.emit();
     }
     this.activated = false;
     this.entered = false;

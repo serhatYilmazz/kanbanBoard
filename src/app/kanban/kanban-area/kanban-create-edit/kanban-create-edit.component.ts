@@ -33,9 +33,9 @@ export class KanbanCreateEditComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.kaniboForm.value);
     const newKanibo = new Kanibo(this.kaniboForm.value.title, this.kaniboForm.value.description, this.taskId);
     this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));
+    this.kaniboForm.reset();
   }
 
 }
