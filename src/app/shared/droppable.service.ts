@@ -1,6 +1,6 @@
 import {Injectable, Optional, SkipSelf} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {Kanibo} from '../kanban/area/kanibo/kanibo.model';
+import {Kanibo} from '../kanban/kanban-area/area/kanibo/kanibo.model';
 
 @Injectable()
 export class DroppableService {

@@ -7,6 +7,8 @@ import {KanbanModule} from './kanban/kanban.module';
 import {reducers} from './store/app.reducers';
 import {SharedModule} from './shared/shared.module';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {CoreModule} from './core/core.module';
+import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
   imports: [
     BrowserModule,
     OverlayModule,
+    AppRoutingModule,
+    CoreModule,
     KanbanModule,
     SharedModule,
     StoreModule.forRoot(reducers)

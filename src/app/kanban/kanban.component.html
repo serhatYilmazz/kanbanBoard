@@ -1,15 +1,1 @@
-<div class="row">
-  <div class="col-xs-12" fxLayout="row wrap" fxLayoutAlign="space-around" fxLayout.lt-sm="column">
-    <!--<app-area [ngStyle]="{'background-image': 'linear-gradient(to right, red, #f94b00, orange)' }" [title]="'TODO'"></app-area>-->
-    <!--<app-area [ngStyle]="{'background-image': 'linear-gradient(to right, #ffc557, yellow, #d9ff4c)' }" [title]="'IN PROGRESS'"></app-area>-->
-    <!--<app-area [ngStyle]="{'background-image': 'linear-gradient(to right, #c9ff00, #C3FE01, #31E116)' }" [title]="'DONE'"></app-area>-->
-    <app-area
-      *ngFor="let section of sectionsName"
-      [section]="sections.section[section]"
-      [fxFlexOrder]=sections.section[section].order
-      appDropzone
-      (drop)="move(sections.section[section], section)"
-      (remove)="remove(sections.section[section], section)">
-    </app-area>
-  </div>
-</div>
+<router-outlet></router-outlet>
