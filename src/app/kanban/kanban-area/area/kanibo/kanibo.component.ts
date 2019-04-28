@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Kanibo} from './kanibo.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-kanibo',
@@ -14,4 +15,7 @@ export class KaniboComponent implements OnInit {
   ngOnInit() {
   }
 
+  getAvailability() {
+    return moment(this.kanibo.date).startOf().fromNow();
+  }
 }

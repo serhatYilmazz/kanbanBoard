@@ -5,7 +5,18 @@
     <ng-content></ng-content>
   </div>
   <div class="kanibo kanibo-body"
-       [ngClass]="{'show': showDescription, 'hide': !showDescription}">{{kanibo.description}}</div>
+       [ngClass]="{'show': showDescription, 'hide': !showDescription}">
+    <div>
+      {{kanibo.description}}
+    </div>
+
+    <div class=" date" style="float:right">
+      {{kanibo.date | date}}
+      <div class="date-detail">
+        {{getAvailability()}}
+      </div>
+    </div>
+  </div>
 </div>
 
 

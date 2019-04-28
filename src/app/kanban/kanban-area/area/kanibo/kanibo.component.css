@@ -1,7 +1,25 @@
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(100px) }
-  to { opacity: 1; transform: translate(0px, 0px)}
+  from {
+    opacity: 0;
+    transform: translateY(100px)
+  }
+  to {
+    opacity: 1;
+    transform: translate(0px, 0px)
+  }
 }
+
+@keyframes jump {
+  from {
+    opacity: 0;
+    transform: translateX(-200%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+
 
 .border {
   border: 1px solid black;
@@ -69,3 +87,23 @@
   cursor: move;
   font-size: 1.2em;
 }
+
+.date-detail {
+  display: none;
+  animation: jump-out 500ms;
+}
+
+.date {
+  float: left;
+}
+
+.date:hover {
+  cursor: e-resize;
+}
+
+.date:hover .date-detail {
+  display: block;
+  animation: jump 1s;
+}
+
+

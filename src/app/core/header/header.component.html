@@ -40,15 +40,12 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/kanban', 'kanban-create']">Create</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-             aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <li class="dropdown" appDropdown>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Operations<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a (click)="onFetchData()">Fetch Data</a></li>
+            <li><a (click)="onSaveData()" style="pointer-events: none;">Save Data</a></li>
           </ul>
         </li>
       </ul>
