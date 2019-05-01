@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as KanbanActions from '../../kanban/store/kanban.actions';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,13 @@ export class HeaderComponent implements OnInit {
 
   onSaveData() {
     this.store.dispatch(new KanbanActions.SaveData());
+  }
+
+  getSaveCondition(): string {
+    if (!environment.production) {
+      return 'none';
+    }
+    return 'auto';
   }
 
 }

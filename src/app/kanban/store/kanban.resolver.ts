@@ -14,7 +14,6 @@ export class KanbanResolver implements Resolve<fromKanban.State> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<fromKanban.State> |
     Promise<fromKanban.State> | fromKanban.State {
-    console.log('hey');
     return this.httpClient.get<fromKanban.State>('https://kanban-85ffb.firebaseio.com/kanban.json', {
             observe: 'body',
             responseType: 'json'

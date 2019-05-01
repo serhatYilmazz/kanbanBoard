@@ -10,6 +10,8 @@ import * as moment from 'moment';
 export class KaniboComponent implements OnInit {
   @Input() kanibo: Kanibo;
 
+  showDescription = false;
+
   constructor() { }
 
   ngOnInit() {
