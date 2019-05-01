@@ -9,6 +9,7 @@ import * as moment from 'moment';
 })
 export class KaniboComponent implements OnInit {
   @Input() kanibo: Kanibo;
+  @Input() sectionKeyName: string;
 
   showDescription = false;
 
@@ -18,6 +19,6 @@ export class KaniboComponent implements OnInit {
   }
 
   getAvailability() {
-    return moment(this.kanibo.date).startOf().fromNow();
+    return moment(this.kanibo.creationDate).startOf().fromNow();
   }
 }

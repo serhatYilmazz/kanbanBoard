@@ -12,7 +12,7 @@ import * as KanbanActions from './kanban/store/kanban.actions';
 })
 export class AppComponent implements OnInit {
 
-  title = 'DragAndDrop';
+  title = 'KanbanBoard';
 
   constructor(private store: Store<fromApp.AppState>) {
 

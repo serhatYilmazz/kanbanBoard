@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Kanibo} from '../area/kanibo/kanibo.model';
 import {Store} from '@ngrx/store';
 
 import * as KanbanActions from '../../store/kanban.actions';
 import * as fromKanban from '../../store/kanban.reducer';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 
 @Component({
   selector: 'app-kanban-create-edit',
@@ -15,29 +15,79 @@ import {Router} from '@angular/router';
 export class KanbanCreateEditComponent implements OnInit {
 
   kaniboForm: FormGroup;
-  taskId: number;
+  editMode = false;
+  sectionKeyName: string;
+  id: number;
+
+  oldKanibo: Kanibo;
+
+  state: fromKanban.State;
 
   constructor(private store: Store<fromKanban.State>,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
 
     this.store.select('kanban').subscribe(
       (state: fromKanban.State) => {
-        this.taskId = state.taskId;
+        if (!state) {
+          this.router.navigate(['/kanban', 'kanban-board']);
+        } else {
+          this.state = state;
+        }
       }
     );
 
-    this.kaniboForm = new FormGroup({
-      title: new FormControl(null),
-      description: new FormControl(null)
-    });
+    this.route.params.subscribe(
+      (param: Params) => {
+        this.editMode = param.id != null;
+        if (this.editMode) {
+          this.sectionKeyName = param.sectionName;
+          this.id = +param.id;
+        }
+      }
+    );
+
+    this.initializeForm();
+
   }
 
   onSubmit() {
-    const newKanibo = new Kanibo(this.kaniboForm.value.title, this.kaniboForm.value.description, this.taskId, new Date());
-    this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));
+    if (this.editMode) {
+      this.store.dispatch(new KanbanActions.UpdateKanibo({
+        oldKanibo: this.oldKanibo,
+        title: this.kaniboForm.value.title,
+        description: this.kaniboForm.value.description,
+        sectionKeyName: this.sectionKeyName
+      }));
+    } else {
+      const newKanibo = new Kanibo(this.kaniboForm.value.title, this.kaniboForm.value.description, this.state.taskId, new Date(), null);
+      this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));
+    }
     this.router.navigate(['/kanban', 'kanban-board']);
+  }
+
+  initializeForm() {
+    let title = null;
+    let description = null;
+
+    if (this.editMode) {
+      const theKanibos = this.state.section[this.sectionKeyName].list.filter(kanibo => {
+        return kanibo.taskId === this.id;
+      });
+      this.oldKanibo = theKanibos.pop();
+      title = this.oldKanibo.title;
+      description = this.oldKanibo.description;
+    }
+
+
+    this.kaniboForm = new FormGroup({
+      title: new FormControl(title, [Validators.required]),
+      description: new FormControl(description, [Validators.required])
+    });
+
   }
 
 }

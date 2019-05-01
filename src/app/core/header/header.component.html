@@ -45,6 +45,7 @@
              aria-expanded="false">Operations<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a (click)="onFetchData()">Fetch Data</a></li>
+            <li role="separator" class="divider"></li>
             <li><a (click)="onSaveData()" [ngStyle]="{'pointer-events': getSaveCondition()}">Save Data</a></li>
           </ul>
         </li>

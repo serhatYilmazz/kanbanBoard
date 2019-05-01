@@ -6,6 +6,7 @@ export const MOVE_TO = 'MOVE_TO';
 export const REMOVE_FROM = 'REMOVE_FROM';
 export const SELECT_KANIBO = 'SELECT_KANIBO';
 export const ADD_KANIBO = 'ADD_KANIBO';
+export const UPDATE_KANIBO = 'UPDATE_KANIBO';
 export const ON_FETCH_DATA = 'ON_FETCH_DATA';
 export const SET_KANBAN_BOARD = 'SET_KANBAN_BOARD';
 export const ON_SAVE_DATA = 'ON_SAVE_DATA';
@@ -36,6 +37,14 @@ export class AddKanibo implements Action {
   }
 }
 
+export class UpdateKanibo implements Action {
+  readonly type = UPDATE_KANIBO;
+
+  constructor(public payload: {oldKanibo: Kanibo, title: string, description: string, sectionKeyName: string}) {
+
+  }
+}
+
 export class FetchData implements Action {
   readonly type = ON_FETCH_DATA;
 }
@@ -51,5 +60,13 @@ export class SaveData implements Action {
   readonly type = ON_SAVE_DATA;
 }
 
-export type KanbanActions = SelectKanibo | MoveTo | RemoveFrom | AddKanibo | FetchData | SetKanbanBoard | SaveData;
+export type KanbanActions =
+  SelectKanibo |
+  MoveTo |
+  RemoveFrom |
+  AddKanibo |
+  FetchData |
+  SetKanbanBoard |
+  SaveData |
+  UpdateKanibo;
 

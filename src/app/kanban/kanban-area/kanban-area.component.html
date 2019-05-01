@@ -7,6 +7,7 @@
       *ngFor="let section of sectionsName"
       [section]="sections.section[section]"
       [fxFlexOrder]=sections.section[section].order
+      [sectionKeyName]="section"
       appDropzone
       (drop)="move(sections.section[section], section)"
       (remove)="remove(sections.section[section], section)">

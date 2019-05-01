@@ -13,6 +13,7 @@ import {SectionModel} from '../../section.model';
 })
 export class AreaComponent implements OnInit {
   @Input() section: SectionModel;
+  @Input() sectionKeyName: string;
 
   constructor(private store: Store<fromApp.AppState>) { }
 
