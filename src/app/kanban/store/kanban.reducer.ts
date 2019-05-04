@@ -2,7 +2,6 @@ import {SectionModel} from '../section.model';
 
 import * as KanbanActions from './kanban.actions';
 import {Kanibo} from '../kanban-area/area/kanibo/kanibo.model';
-import {init} from 'protractor/built/launcher';
 
 export interface State {
   section: {
