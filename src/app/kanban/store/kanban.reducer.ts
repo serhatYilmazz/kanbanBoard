@@ -2,6 +2,7 @@ import {SectionModel} from '../section.model';
 
 import * as KanbanActions from './kanban.actions';
 import {Kanibo} from '../kanban-area/area/kanibo/kanibo.model';
+import {init} from 'protractor/built/launcher';
 
 export interface State {
   section: {
@@ -48,7 +49,7 @@ const initialState: State = {
   selectedKanibo: null
 };
 
-export function kanbanReducer(state, action: KanbanActions.KanbanActions) {
+export function kanbanReducer(state = initialState, action: KanbanActions.KanbanActions) {
   switch (action.type) {
     case KanbanActions.SELECT_KANIBO:
       return {
