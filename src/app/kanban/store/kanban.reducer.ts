@@ -16,9 +16,9 @@ const initialState: State = {
     todo: {
       title: 'TODO',
       list: [
-        new Kanibo('Sleep', 'Sleep in your Bed', 6),
-        new Kanibo('Eat', 'Eat in kitchen something to stay alive', 7),
-        new Kanibo('Relax', 'Relax your mind for a while', 8)
+        new Kanibo('Sleep', 'Sleep in your Bed', 6, new Date(2018, 9, 13), null),
+        new Kanibo('Eat', 'Eat in kitchen something to stay alive', 7, new Date(2018, 8, 13), null),
+        new Kanibo('Relax', 'Relax your mind for a while', 8, new Date(2018, 5, 13), null)
       ],
       order: 1,
     },
@@ -26,8 +26,8 @@ const initialState: State = {
     inProgress: {
       title: 'INPROGRESS',
       list: [
-        new Kanibo('Angular Kanban Board', 'Develop a Kanban board to track over your multiple issues', 4),
-        new Kanibo('Java OCA', 'Oracle Certified Association Preperation', 5)
+        new Kanibo('Angular Kanban Board', 'Develop a Kanban board to track over your multiple issues', 4, new Date(2018, 1, 13), null),
+        new Kanibo('Java OCA', 'Oracle Certified Association Preperation', 5, new Date(2018, 3, 13), null)
       ],
       order: 2
     },
@@ -35,7 +35,10 @@ const initialState: State = {
     done: {
       title: 'DONE',
       list: [
-        new Kanibo('Graduate from University', 'Graduate from the university to take a Bachelor\'s degree to get a job', 6),
+        new Kanibo('Graduate from University',
+          'Graduate from the university to take a Bachelor\'s degree to get a job',
+          6,
+          new Date(2018, 2, 13), null),
       ],
       order: 3
     }
@@ -45,7 +48,7 @@ const initialState: State = {
   selectedKanibo: null
 };
 
-export function kanbanReducer(state = initialState, action: KanbanActions.KanbanActions) {
+export function kanbanReducer(state, action: KanbanActions.KanbanActions) {
   switch (action.type) {
     case KanbanActions.SELECT_KANIBO:
       return {
@@ -84,8 +87,32 @@ export function kanbanReducer(state = initialState, action: KanbanActions.Kanban
         ...state.section.todo.list,
         list: addTodo
       };
+      let taskId = state.taskId;
       return {
-        ...state
+        ...state,
+        taskId: ++taskId
+      };
+    case KanbanActions.UPDATE_KANIBO:
+      const updateOldKanibo = {
+        ...action.payload.oldKanibo,
+        title: action.payload.title,
+        description: action.payload.description,
+        updateDate: new Date()
+      };
+
+      const oldUpdateKaniboActionState = {...state};
+      const oldKanibo = oldUpdateKaniboActionState.section[action.payload.sectionKeyName].list.indexOf(action.payload.oldKanibo);
+
+      oldUpdateKaniboActionState.section[action.payload.sectionKeyName].list.splice(oldKanibo, 1, updateOldKanibo);
+
+      return {
+        ...state,
+        ...oldUpdateKaniboActionState
+      };
+    case KanbanActions.SET_KANBAN_BOARD:
+      return {
+        ...state,
+        ...action.payload
       };
     default:
       return state;

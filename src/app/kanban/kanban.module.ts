@@ -10,6 +10,8 @@ import { KanbanAreaComponent } from './kanban-area/kanban-area.component';
 import {AreaComponent} from './kanban-area/area/area.component';
 import {KaniboComponent} from './kanban-area/area/kanibo/kanibo.component';
 import {KanbanCreateEditComponent} from './kanban-area/kanban-create-edit/kanban-create-edit.component';
+import {EffectsModule} from '@ngrx/effects';
+import {KanbanEffects} from './store/kanban.effects';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import {KanbanCreateEditComponent} from './kanban-area/kanban-create-edit/kanban
     CommonModule,
     FlexLayoutModule,
     KanbanRoutingModule,
+    EffectsModule.forRoot([KanbanEffects]),
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule

@@ -8,7 +8,8 @@ const kanbanRoutes: Routes = [
   {
     path: 'kanban', component: KanbanComponent, children: [
       {path: 'kanban-board', component: KanbanAreaComponent},
-      {path: 'kanban-create', component: KanbanCreateEditComponent}
+      {path: 'kanban-create', component: KanbanCreateEditComponent},
+      {path: 'kanban-edit/:sectionName/:id', component: KanbanCreateEditComponent}
     ]
   },
 ];

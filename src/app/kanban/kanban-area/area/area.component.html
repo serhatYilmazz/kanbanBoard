@@ -4,6 +4,7 @@
   </div>
   <app-kanibo *ngFor="let item of section.list"
               [kanibo]="item"
+              [sectionKeyName]="sectionKeyName"
               appDroppable
               (onDragStartEvent)="notifyElementIsSelected(item)">
     <app-kanibo [kanibo]="item" *appDraggableObserver></app-kanibo>
