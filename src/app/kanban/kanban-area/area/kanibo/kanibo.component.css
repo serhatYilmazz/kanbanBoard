@@ -94,7 +94,7 @@
 }
 
 .date {
-  float: left;
+  float: right;
 }
 
 .date:hover {
@@ -113,5 +113,21 @@
 }
 
 .edit:hover {
-  opacity: 0.8;
+  color: #31ff33;
+}
+
+tr {
+  border-bottom: 1px solid lightgray;
+}
+
+tr:last-child {
+  border: none;
+}
+
+td {
+  padding: 0.5em;
+}
+
+td:last-child {
+  text-align: right;
 }

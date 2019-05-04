@@ -90,4 +90,12 @@ export class KanbanCreateEditComponent implements OnInit {
 
   }
 
+  getButtonName() {
+    if (this.editMode) {
+      return 'Update';
+    } else {
+      return 'Create';
+    }
+  }
+
 }

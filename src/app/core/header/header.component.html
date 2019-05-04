@@ -44,9 +44,9 @@
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
              aria-expanded="false">Operations<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a (click)="onFetchData()">Fetch Data</a></li>
+            <li><a class="operation" (click)="onFetchData()">Fetch Data</a></li>
             <li role="separator" class="divider"></li>
-            <li><a (click)="onSaveData()" [ngStyle]="{'pointer-events': getSaveCondition()}">Save Data</a></li>
+            <li><a class="operation" (click)="onSaveData()" [ngStyle]="{'pointer-events': getSaveCondition()}">Save Data</a></li>
           </ul>
         </li>
       </ul>
