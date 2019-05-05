@@ -88,6 +88,10 @@
   font-size: 1.2em;
 }
 
+.drag:hover {
+  font-size: 1.5em;
+}
+
 .date-detail {
   display: none;
   animation: jump-out 500ms;

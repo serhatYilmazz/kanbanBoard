@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Kanibo} from './kanibo.model';
 
 import {getDateRange} from '../../../../util/date/date.util';
@@ -11,6 +11,7 @@ import {getDateRange} from '../../../../util/date/date.util';
 export class KaniboComponent implements OnInit {
   @Input() kanibo: Kanibo;
   @Input() sectionKeyName: string;
+  @Output() eventUp = new EventEmitter<PointerEvent>();
 
   showDescription = false;
 
@@ -21,5 +22,9 @@ export class KaniboComponent implements OnInit {
 
   getLastedTime(date: Date) {
     return getDateRange(date);
+  }
+
+  eventEmit(event: PointerEvent) {
+    this.eventUp.emit(event);
   }
 }

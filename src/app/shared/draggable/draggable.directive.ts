@@ -14,7 +14,7 @@ export class DraggableDirective {
   @Output() onDragMoveEvent = new EventEmitter<PointerEvent>();
   @Output() onDragEndEvent = new EventEmitter<PointerEvent>();
 
-  @HostListener('pointerdown', ['$event'])
+  @HostListener('eventUp', ['$event'])
   onDragStart(event: PointerEvent) {
     this.dragging = true;
     this.onDragStartEvent.emit(event);
