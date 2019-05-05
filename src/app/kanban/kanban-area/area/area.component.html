@@ -1,6 +1,6 @@
 <div class="area-boundary">
   <div class="panel-heading text-center">
-    <h2 class="">{{section.title}}</h2>
+    <h2 class="">{{section.title}} - ({{section.list.length}})</h2>
   </div>
   <app-kanibo *ngFor="let item of section.list"
               [kanibo]="item"

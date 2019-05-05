@@ -60,8 +60,8 @@ export function kanbanReducer(state = initialState, action: KanbanActions.Kanban
       movedItemSection.list.push(state.selectedKanibo);
 
       const newStateMoveTo = {
-        ...state.section[action.payload.sectionName].list,
-        list: movedItemSection
+        ...state.section[action.payload.sectionName],
+        ...movedItemSection
       };
       return {
         ...state
@@ -74,7 +74,7 @@ export function kanbanReducer(state = initialState, action: KanbanActions.Kanban
 
       const newStateRemoveFrom = {
         ...state.section[action.payload.sectionName],
-        removedItemSectionModel
+        ...removedItemSectionModel
       };
       return {
         ...state
