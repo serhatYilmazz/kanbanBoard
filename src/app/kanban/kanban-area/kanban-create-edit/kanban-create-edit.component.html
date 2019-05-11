@@ -4,14 +4,48 @@
       <form [formGroup]="kaniboForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label>Title</label>
-          <input class="form-control" formControlName="title"/>
+          <input class="form-control" formControlName="title" #title />
         </div>
         <div class="form-group">
           <label>Description</label>
-          <textarea rows="5" class="form-control rounded-0" formControlName="description">
+          <textarea rows="5" class="form-control rounded-0" formControlName="description" #description>
           </textarea>
         </div>
-        <button type="submit" class="btn btn-primary">{{getButtonName()}}</button>
+        <div class="row" formGroupName="priotrize" #priotrize>
+          <div class="col-xs-3">
+            <div class="form-group">
+              <label>Urgency</label>
+              <select class="form-control" formControlName="urgency">
+                <option *ngFor="let priority of priorityKeys" [ngValue]="getPriority(priority)" >{{priority}}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-3">
+            <div class="form-group">
+              <label>Importance</label>
+              <select class="form-control" formControlName="importance" >
+                <option *ngFor="let priority of priorityKeys" [ngValue]="getPriority(priority)" >{{priority }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-3">
+            <div class="form-group">
+              <label>Effort</label>
+              <select class="form-control" formControlName="effort">
+                <option *ngFor="let priority of priorityKeys" [ngValue]="getPriority(priority)" >{{priority }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-3">
+            <div class="form-group">
+              <label>Priority</label>
+              <select class="form-control" formControlName="priority">
+                <option  *ngFor="let priority of priorityKeys" [ngValue]="getPriority(priority)" >{{priority }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!kaniboForm.valid">{{getButtonName()}}</button>
       </form>
     </div>
   </div>
