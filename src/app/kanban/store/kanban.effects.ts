@@ -7,6 +7,7 @@ import {Store} from '@ngrx/store';
 import * as KanbanActions from './kanban.actions';
 import * as fromKanban from '../store/kanban.reducer';
 import {environment} from '../../../environments/environment';
+import * as EffectResponseUtil from '../../util/response/effects-response.util';
 
 @Injectable()
 export class KanbanEffects {
@@ -23,6 +24,9 @@ export class KanbanEffects {
       });
     }),
     map((response) => {
+      if (!response) {
+        response = EffectResponseUtil.initializeEmptyResponse();
+      }
       if (response.section) {
         const keys = Object.keys(response.section);
         for (const key of keys) {
@@ -43,7 +47,7 @@ export class KanbanEffects {
     ofType(KanbanActions.ON_SAVE_DATA),
     withLatestFrom((this.store.select('kanban'))),
     switchMap(([action, state]) => {
-      return this.httpClient.put(this.dbUrl, state);
+      return this.httpClient.put(this.dbUrl, state, {reportProgress: true});
     })
   );
 

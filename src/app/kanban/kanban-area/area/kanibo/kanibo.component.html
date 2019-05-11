@@ -32,6 +32,30 @@
         </td>
       </tr>
       <tr>
+        <td><b>Urgency</b></td>
+        <td>
+          {{kanibo.priotrize.urgency | priorityMathcer}}
+        </td>
+      </tr>
+      <tr>
+        <td><b>Importance</b></td>
+        <td>
+          {{kanibo.priotrize.importance | priorityMathcer}}
+        </td>
+      </tr>
+      <tr>
+        <td><b>Effort</b></td>
+        <td>
+          {{kanibo.priotrize.effort | priorityMathcer}}
+        </td>
+      </tr>
+      <tr>
+        <td><b>Priority</b></td>
+        <td>
+          {{kanibo.priotrize.priority | priorityMathcer}}
+        </td>
+      </tr>
+      <tr>
         <td></td>
         <td><a class="edit" routerLink="/kanban/kanban-edit/{{sectionKeyName}}/{{kanibo.taskId}}"><b>Edit</b></a></td>
       </tr>

@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Kanibo} from '../area/kanibo/kanibo.model';
+import {Kanibo, Priotrize} from '../area/kanibo/kanibo.model';
 import {Store} from '@ngrx/store';
 
 import * as KanbanActions from '../../store/kanban.actions';
 import * as fromKanban from '../../store/kanban.reducer';
 import {ActivatedRoute, Params, Router} from '@angular/router';
+
+import {Priority} from '../../../enums/enums';
 
 @Component({
   selector: 'app-kanban-create-edit',
@@ -21,6 +23,8 @@ export class KanbanCreateEditComponent implements OnInit {
 
   oldKanibo: Kanibo;
 
+  priorityKeys;
+
   state: fromKanban.State;
 
   constructor(private store: Store<fromKanban.State>,
@@ -29,7 +33,6 @@ export class KanbanCreateEditComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.store.select('kanban').subscribe(
       (state: fromKanban.State) => {
         if (!state) {
@@ -50,6 +53,7 @@ export class KanbanCreateEditComponent implements OnInit {
       }
     );
 
+    this.priorityKeys = Object.keys(Priority);
     this.initializeForm();
 
   }
@@ -60,10 +64,25 @@ export class KanbanCreateEditComponent implements OnInit {
         oldKanibo: this.oldKanibo,
         title: this.kaniboForm.value.title,
         description: this.kaniboForm.value.description,
+        priotrize: {
+          urgency: this.kaniboForm.value.priotrize.urgency,
+          importance: this.kaniboForm.value.priotrize.importance,
+          effort: this.kaniboForm.value.priotrize.effort,
+          priority: this.kaniboForm.value.priotrize.priority,
+        },
         sectionKeyName: this.sectionKeyName
       }));
     } else {
-      const newKanibo = new Kanibo(this.kaniboForm.value.title, this.kaniboForm.value.description, this.state.taskId, new Date(), null);
+      const newKanibo = new Kanibo(
+        this.kaniboForm.value.title,
+        this.kaniboForm.value.description,
+        this.state.taskId, new Date(),
+        null,
+        new Priotrize(this.kaniboForm.value.priotrize.urgency,
+          this.kaniboForm.value.priotrize.importance,
+          this.kaniboForm.value.priotrize.effort,
+          this.kaniboForm.value.priotrize.priority));
+
       this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));
     }
     this.router.navigate(['/kanban', 'kanban-board']);
@@ -72,6 +91,10 @@ export class KanbanCreateEditComponent implements OnInit {
   initializeForm() {
     let title = null;
     let description = null;
+    let urgency = 1;
+    let importance = 1;
+    let effort = 1;
+    let priority = 1;
 
     if (this.editMode) {
       const theKanibos = this.state.section[this.sectionKeyName].list.filter(kanibo => {
@@ -80,12 +103,22 @@ export class KanbanCreateEditComponent implements OnInit {
       this.oldKanibo = theKanibos.pop();
       title = this.oldKanibo.title;
       description = this.oldKanibo.description;
+      urgency = this.oldKanibo.priotrize.urgency;
+      importance = this.oldKanibo.priotrize.importance;
+      effort = this.oldKanibo.priotrize.effort;
+      priority = this.oldKanibo.priotrize.priority;
     }
 
 
     this.kaniboForm = new FormGroup({
       title: new FormControl(title, [Validators.required]),
-      description: new FormControl(description, [Validators.required])
+      description: new FormControl(description, [Validators.required]),
+      priotrize: new FormGroup({
+        urgency: new FormControl(urgency, [Validators.required]),
+        importance: new FormControl(importance, [Validators.required]),
+        effort: new FormControl(effort, [Validators.required]),
+        priority: new FormControl(priority, [Validators.required])
+      })
     });
 
   }
@@ -96,6 +129,10 @@ export class KanbanCreateEditComponent implements OnInit {
     } else {
       return 'Create';
     }
+  }
+
+  getPriority(priority) {
+    return Priority[priority];
   }
 
 }

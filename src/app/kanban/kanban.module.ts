@@ -12,6 +12,7 @@ import {KaniboComponent} from './kanban-area/area/kanibo/kanibo.component';
 import {KanbanCreateEditComponent} from './kanban-area/kanban-create-edit/kanban-create-edit.component';
 import {EffectsModule} from '@ngrx/effects';
 import {KanbanEffects} from './store/kanban.effects';
+import {PriorityMatcherPipe} from '../shared/priority-matcher/priority-matcher.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {KanbanEffects} from './store/kanban.effects';
     AreaComponent,
     KaniboComponent,
     KanbanCreateEditComponent,
-    KanbanAreaComponent
+    KanbanAreaComponent,
+    PriorityMatcherPipe
   ],
   imports: [
     CommonModule,

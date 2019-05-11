@@ -40,7 +40,7 @@ export class AddKanibo implements Action {
 export class UpdateKanibo implements Action {
   readonly type = UPDATE_KANIBO;
 
-  constructor(public payload: {oldKanibo: Kanibo, title: string, description: string, sectionKeyName: string}) {
+  constructor(public payload: {oldKanibo: Kanibo, title: string, description: string, priotrize, sectionKeyName: string}) {
 
   }
 }
