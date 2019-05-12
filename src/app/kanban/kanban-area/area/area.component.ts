@@ -24,4 +24,7 @@ export class AreaComponent implements OnInit {
   ngOnInit() {
   }
 
+  sort(event, sectionName) {
+  }
+
 }

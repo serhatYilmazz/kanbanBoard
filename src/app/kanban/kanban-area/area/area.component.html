@@ -2,11 +2,16 @@
   <div class="panel-heading text-center">
     <h2 class="">{{section.title}} - ({{section.list.length}})</h2>
   </div>
-  <app-kanibo *ngFor="let item of section.list"
-              [kanibo]="item"
-              [sectionKeyName]="sectionKeyName"
-              appDroppable
-              (onDragStartEvent)="notifyElementIsSelected(item)">
-    <app-kanibo [kanibo]="item" *appDraggableObserver></app-kanibo>
-  </app-kanibo>
+  <div appSortableList (sort)="sort()">
+    <app-kanibo *ngFor="let item of section.list"
+                [kanibo]="item"
+                [sectionKeyName]="sectionKeyName"
+                appDroppable
+                (onDragStartEvent)="notifyElementIsSelected(item)"
+                >
+      <app-kanibo
+        [kanibo]="item"
+        *appDraggableObserver></app-kanibo>
+    </app-kanibo>
+  </div>
 </div>
