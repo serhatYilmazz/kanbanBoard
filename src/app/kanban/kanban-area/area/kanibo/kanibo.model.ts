@@ -6,7 +6,8 @@ export class Kanibo {
               public taskId: number,
               public creationDate: Date,
               public updateDate: Date,
-              public priotrize: Priotrize) {
+              public priotrize: Priotrize,
+              public spentTime) {
   }
 }
 

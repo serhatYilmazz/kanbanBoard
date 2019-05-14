@@ -81,7 +81,8 @@ export class KanbanCreateEditComponent implements OnInit {
         new Priotrize(this.kaniboForm.value.priotrize.urgency,
           this.kaniboForm.value.priotrize.importance,
           this.kaniboForm.value.priotrize.effort,
-          this.kaniboForm.value.priotrize.priority));
+          this.kaniboForm.value.priotrize.priority),
+        0);
 
       this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));
     }

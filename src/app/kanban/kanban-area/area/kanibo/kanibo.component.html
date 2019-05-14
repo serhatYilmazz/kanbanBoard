@@ -9,57 +9,91 @@
     <div>
       {{kanibo.description}}
     </div>
-    <hr>
-    <table style="width: 100%;">
-      <tr>
-        <td><b>Task Number:</b></td>
-        <td>{{kanibo.taskId}}</td>
-      </tr>
-      <tr>
-        <td><b>Creation Date:</b></td>
-        <td class="date">{{kanibo.creationDate | date}}
-          <div class="date-detail">
-            {{getLastedTime(kanibo.creationDate)}}
-          </div>
-        </td>
-      </tr>
-      <tr *ngIf="kanibo.updateDate">
-        <td><b>Last Update:</b></td>
-        <td class="date">{{kanibo.updateDate | date}}
-          <div class="date-detail">
-            {{getLastedTime(kanibo.updateDate)}}
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td><b>Urgency</b></td>
-        <td>
-          {{kanibo.priotrize.urgency | priorityMathcer}}
-        </td>
-      </tr>
-      <tr>
-        <td><b>Importance</b></td>
-        <td>
-          {{kanibo.priotrize.importance | priorityMathcer}}
-        </td>
-      </tr>
-      <tr>
-        <td><b>Effort</b></td>
-        <td>
-          {{kanibo.priotrize.effort | priorityMathcer}}
-        </td>
-      </tr>
-      <tr>
-        <td><b>Priority</b></td>
-        <td>
-          {{kanibo.priotrize.priority | priorityMathcer}}
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td><a class="edit" routerLink="/kanban/kanban-edit/{{sectionKeyName}}/{{kanibo.taskId}}"><b>Edit</b></a></td>
-      </tr>
-    </table>
+    <hr/>
+    <div>
+      <table style="width: 100%;">
+        <tr>
+          <td><a (click)="createPortal(propertiesTemplatePortalContent)">Show Properties</a></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a (click)="createPortal(timerTemplatePortalContent)">Show Timer</a></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+
+    <ng-template #propertiesTemplatePortalContent>
+      <div>
+        <hr>
+        <table style="width: 100%;">
+          <tr>
+            <td><b>Task Number:</b></td>
+            <td>{{kanibo.taskId}}</td>
+          </tr>
+          <tr>
+            <td><b>Creation Date:</b></td>
+            <td class="date">{{kanibo.creationDate | date}}
+              <div class="date-detail">
+                {{getLastedTime(kanibo.creationDate)}}
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="kanibo.updateDate">
+            <td><b>Last Update:</b></td>
+            <td class="date">{{kanibo.updateDate | date}}
+              <div class="date-detail">
+                {{getLastedTime(kanibo.updateDate)}}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Urgency</b></td>
+            <td>
+              {{kanibo.priotrize.urgency | priorityMathcer}}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Importance</b></td>
+            <td>
+              {{kanibo.priotrize.importance | priorityMathcer}}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Effort</b></td>
+            <td>
+              {{kanibo.priotrize.effort | priorityMathcer}}
+            </td>
+          </tr>
+          <tr>
+            <td><b>Priority</b></td>
+            <td>
+              {{kanibo.priotrize.priority | priorityMathcer}}
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a class="edit" routerLink="/kanban/kanban-edit/{{sectionKeyName}}/{{kanibo.taskId}}"><b>Edit</b></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ng-template>
+
+    <ng-template #timerTemplatePortalContent>
+      <hr/>
+      <div class="timer">
+        <div>
+          <button class="btn btn-success" (click)="startTimer()" >{{!isTimerActive ? 'Start' : 'Pause'}}</button>
+        </div>
+        <div>{{kanibo.spentTime | secondsToMinutes}}</div>
+        <div>
+          <button class="btn btn-danger" (click)="completeKanibo()">Complete</button>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>
 

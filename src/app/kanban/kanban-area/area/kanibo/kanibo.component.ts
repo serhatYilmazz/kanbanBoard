@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Kanibo} from './kanibo.model';
 
 import {getDateRange} from '../../../../util/date/date.util';
+import {Portal, TemplatePortal} from '@angular/cdk/portal';
 
 @Component({
   selector: 'app-kanibo',
@@ -15,7 +16,13 @@ export class KaniboComponent implements OnInit {
 
   showDescription = false;
 
-  constructor() { }
+  selectedPortal: Portal<any>;
+
+  isTimerActive = false;
+
+  timer;
+
+  constructor(private viewContainerRef: ViewContainerRef) { }
 
   ngOnInit() {
   }
@@ -26,5 +33,26 @@ export class KaniboComponent implements OnInit {
 
   eventEmit(event: PointerEvent) {
     this.eventUp.emit(event);
+  }
+
+  createPortal(templateRef: TemplateRef<any>) {
+    this.selectedPortal = new TemplatePortal(templateRef, this.viewContainerRef);
+  }
+
+  startTimer() {
+    if (!this.isTimerActive) {
+      this.timer = setInterval(() => {
+        this.kanibo.spentTime++;
+      }, 1000);
+      this.isTimerActive = true;
+    } else {
+      this.isTimerActive = false;
+      clearInterval(this.timer);
+    }
+  }
+
+  completeKanibo() {
+    this.isTimerActive = false;
+    clearInterval(this.timer);
   }
 }

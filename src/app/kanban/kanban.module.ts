@@ -12,7 +12,8 @@ import {KaniboComponent} from './kanban-area/area/kanibo/kanibo.component';
 import {KanbanCreateEditComponent} from './kanban-area/kanban-create-edit/kanban-create-edit.component';
 import {EffectsModule} from '@ngrx/effects';
 import {KanbanEffects} from './store/kanban.effects';
-import {PriorityMatcherPipe} from '../shared/priority-matcher/priority-matcher.pipe';
+import {PriorityMatcherPipe} from '../shared/pipes/priority-matcher/priority-matcher.pipe';
+import {PortalModule} from '@angular/cdk/portal';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {PriorityMatcherPipe} from '../shared/priority-matcher/priority-matcher.p
     EffectsModule.forRoot([KanbanEffects]),
     ReactiveFormsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    PortalModule
   ]
 })
 export class KanbanModule {
