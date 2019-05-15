@@ -24,9 +24,14 @@
     </div>
 
     <ng-template [cdkPortalOutlet]="selectedPortal"></ng-template>
+    <div class="class">
+      <i style="cursor: pointer;" class="fa fa-window-close pull-right" aria-hidden="true" *ngIf="isAttached()"
+         (click)="detach()"></i>
+    </div>
+
 
     <ng-template #propertiesTemplatePortalContent>
-      <div>
+      <div class="portal">
         <hr>
         <table style="width: 100%;">
           <tr>
@@ -90,13 +95,15 @@
 
     <ng-template #timerTemplatePortalContent>
       <hr/>
-      <div class="timer">
-        <div>
-          <button class="btn btn-success" (click)="startTimer()" >{{!isTimerActive ? 'Start' : 'Pause'}}</button>
-        </div>
-        <div>{{kanibo.spentTime | secondsToMinutes}}</div>
-        <div>
-          <button class="btn btn-danger" (click)="completeKanibo()">Complete</button>
+      <div class="portal">
+        <div class="timer">
+          <div>
+            <button class="btn btn-success" (click)="startTimer()">{{!isTimerActive ? 'Start' : 'Pause'}}</button>
+          </div>
+          <div>{{kanibo.spentTime | secondsToMinutes}}</div>
+          <div>
+            <button class="btn btn-danger" (click)="completeKanibo()">Complete</button>
+          </div>
         </div>
       </div>
     </ng-template>

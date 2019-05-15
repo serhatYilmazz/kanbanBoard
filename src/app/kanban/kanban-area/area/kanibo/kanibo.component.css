@@ -141,3 +141,15 @@ td:last-child {
   flex-flow: wrap;
   justify-content: space-between;
 }
+
+.portal {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.fa.fa-window-close { transform: scale(1.5, 1.5); }
+
+.fa.fa-window-close:hover {
+  opacity: 0.6;
+}
