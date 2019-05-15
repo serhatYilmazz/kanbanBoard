@@ -61,4 +61,12 @@ export class KaniboComponent implements OnInit, OnDestroy {
     this.isTimerActive = false;
     clearInterval(this.timer);
   }
+
+  isAttached() {
+    return this.selectedPortal && this.selectedPortal.isAttached;
+  }
+
+  detach() {
+    this.selectedPortal.detach();
+  }
 }
