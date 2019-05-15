@@ -1,4 +1,4 @@
-import {Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
+import {Directive, HostBinding, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {GlobalPositionStrategy, Overlay, OverlayRef} from '@angular/cdk/overlay';
 import {DraggableDirective} from './draggable.directive';
 import {TemplatePortal} from '@angular/cdk/portal';
@@ -8,6 +8,8 @@ import {TemplatePortal} from '@angular/cdk/portal';
   exportAs: 'appDraggableObserver'
 })
 export class DraggableObserverDirective implements OnInit, OnDestroy {
+
+  @HostBinding('class.observer-drag') observerDrag = true;
 
   private positionStrategy = new GlobalPositionStrategy();
 
