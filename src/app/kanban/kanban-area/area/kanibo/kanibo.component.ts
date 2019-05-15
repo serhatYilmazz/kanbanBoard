@@ -9,7 +9,7 @@ import {Portal, TemplatePortal} from '@angular/cdk/portal';
   templateUrl: './kanibo.component.html',
   styleUrls: ['./kanibo.component.css']
 })
-export class KaniboComponent implements OnInit {
+export class KaniboComponent implements OnInit, OnDestroy {
   @Input() kanibo: Kanibo;
   @Input() sectionKeyName: string;
   @Output() eventUp = new EventEmitter<PointerEvent>();
@@ -26,6 +26,12 @@ export class KaniboComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  ngOnDestroy(): void {
+    clearInterval(this.timer);
+  }
+
+
 
   getLastedTime(date: Date) {
     return getDateRange(date);

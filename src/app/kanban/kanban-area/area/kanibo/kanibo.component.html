@@ -16,7 +16,7 @@
           <td><a (click)="createPortal(propertiesTemplatePortalContent)">Show Properties</a></td>
           <td></td>
         </tr>
-        <tr>
+        <tr *ngIf="sectionKeyName === 'inProgress'">
           <td><a (click)="createPortal(timerTemplatePortalContent)">Show Timer</a></td>
           <td></td>
         </tr>
@@ -47,6 +47,12 @@
               <div class="date-detail">
                 {{getLastedTime(kanibo.updateDate)}}
               </div>
+            </td>
+          </tr>
+          <tr>
+            <td><b>Time Spent</b></td>
+            <td>
+              {{kanibo.spentTime | secondsToMinutes}}
             </td>
           </tr>
           <tr>
