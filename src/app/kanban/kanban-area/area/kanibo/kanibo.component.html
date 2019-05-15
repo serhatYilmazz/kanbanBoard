@@ -1,6 +1,6 @@
 <div class="border" [ngClass]="{'chu': isTimerActive, 'box-shadows': showDescription}">
   <div (pointerdown)="eventEmit($event)" class="drag fa fa-arrows"></div>
-  <div class="kanibo kanibo-heading" [ngClass]="{'show': showDescription}" (click)="showDescription = !showDescription">
+  <div class="kanibo kanibo-heading" [ngClass]="{'show': showDescription}" (click)="adjustShowDescriptions()">
     {{kanibo.title}}
     <ng-content></ng-content>
   </div>
