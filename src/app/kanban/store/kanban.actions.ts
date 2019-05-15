@@ -10,6 +10,7 @@ export const UPDATE_KANIBO = 'UPDATE_KANIBO';
 export const ON_FETCH_DATA = 'ON_FETCH_DATA';
 export const SET_KANBAN_BOARD = 'SET_KANBAN_BOARD';
 export const ON_SAVE_DATA = 'ON_SAVE_DATA';
+export const ON_SAVE_A_KANIBO = 'ON_SAVE_A_KANIBO';
 
 export class SelectKanibo implements Action {
   readonly type = SELECT_KANIBO;
@@ -60,6 +61,14 @@ export class SaveData implements Action {
   readonly type = ON_SAVE_DATA;
 }
 
+export class SaveAKanibo implements Action {
+  readonly type = ON_SAVE_A_KANIBO;
+
+  constructor(public payload: Kanibo) {
+
+  }
+}
+
 export type KanbanActions =
   SelectKanibo |
   MoveTo |
@@ -68,5 +77,6 @@ export type KanbanActions =
   FetchData |
   SetKanbanBoard |
   SaveData |
-  UpdateKanibo;
+  UpdateKanibo |
+  SaveAKanibo;
 

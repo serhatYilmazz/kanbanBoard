@@ -9,6 +9,7 @@ import * as fromKanban from '../store/kanban.reducer';
 import {environment} from '../../../environments/environment';
 import * as EffectResponseUtil from '../../util/response/effects-response.util';
 import * as Corrections from '../../util/data-correction/corrections';
+import {kanban_27_corrections} from '../../util/data-correction/corrections';
 
 @Injectable()
 export class KanbanEffects {
@@ -36,6 +37,8 @@ export class KanbanEffects {
           }
         }
       }
+
+      response = kanban_27_corrections(response);
       return {
         type: KanbanActions.SET_KANBAN_BOARD,
         payload: response

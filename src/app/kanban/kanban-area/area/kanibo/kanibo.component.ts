@@ -4,6 +4,10 @@ import {Kanibo} from './kanibo.model';
 import {getDateRange} from '../../../../util/date/date.util';
 import {Portal, TemplatePortal} from '@angular/cdk/portal';
 
+import * as KaniboAction from '../../../store/kanban.actions';
+import * as fromApp from '../../../../store/app.reducers';
+import {Store} from '@ngrx/store';
+
 @Component({
   selector: 'app-kanibo',
   templateUrl: './kanibo.component.html',
@@ -22,15 +26,20 @@ export class KaniboComponent implements OnInit, OnDestroy {
 
   timer;
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
+  saverTimer;
+
+  constructor(private viewContainerRef: ViewContainerRef, private store: Store<fromApp.AppState>) {
+  }
 
   ngOnInit() {
+    this.isTimerActive = !this.kanibo.isTimerActive;
+    this.startTimer();
   }
 
   ngOnDestroy(): void {
     clearInterval(this.timer);
+    clearInterval(this.saverTimer);
   }
-
 
 
   getLastedTime(date: Date) {
@@ -51,15 +60,23 @@ export class KaniboComponent implements OnInit, OnDestroy {
         this.kanibo.spentTime++;
       }, 1000);
       this.isTimerActive = true;
+
+      this.saverTimer = setInterval(() => {
+        this.store.dispatch(new KaniboAction.SaveAKanibo(this.kanibo));
+      }, 5000);
     } else {
       this.isTimerActive = false;
       clearInterval(this.timer);
+      clearInterval(this.saverTimer);
     }
+
+
   }
 
   completeKanibo() {
     this.isTimerActive = false;
     clearInterval(this.timer);
+    clearInterval(this.saverTimer);
   }
 
   isAttached() {
@@ -72,8 +89,8 @@ export class KaniboComponent implements OnInit, OnDestroy {
 
   adjustShowDescriptions() {
     this.showDescription = !this.showDescription;
-    if (this.selectedPortal.isAttached && this.selectedPortal.isAttached) {
-      this.selectedPortal.detach();
+    if (this.selectedPortal && this.selectedPortal.isAttached) {
+      this.detach();
     }
   }
 }

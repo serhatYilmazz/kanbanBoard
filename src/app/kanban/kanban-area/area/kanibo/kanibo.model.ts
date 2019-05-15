@@ -1,5 +1,3 @@
-import { Priority } from '../../../../enums/enums';
-
 export class Kanibo {
   constructor(public title: string,
               public description: string,
@@ -7,7 +5,8 @@ export class Kanibo {
               public creationDate: Date,
               public updateDate: Date,
               public priotrize: Priotrize,
-              public spentTime) {
+              public spentTime,
+              public isTimerActive ) {
   }
 }
 
