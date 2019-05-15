@@ -135,3 +135,9 @@ td {
 td:last-child {
   text-align: right;
 }
+
+.timer {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+}

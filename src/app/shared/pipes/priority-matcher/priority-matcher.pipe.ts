@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {ReversePriority} from '../../enums/enums';
+import {ReversePriority} from '../../../enums/enums';
 
 @Pipe({
   name: 'priorityMathcer'
