@@ -69,4 +69,11 @@ export class KaniboComponent implements OnInit, OnDestroy {
   detach() {
     this.selectedPortal.detach();
   }
+
+  adjustShowDescriptions() {
+    this.showDescription = !this.showDescription;
+    if (this.selectedPortal.isAttached && this.selectedPortal.isAttached) {
+      this.selectedPortal.detach();
+    }
+  }
 }
