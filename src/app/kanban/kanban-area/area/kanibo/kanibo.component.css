@@ -76,11 +76,6 @@
   text-indent: 10%;
 }
 
-:host.dragging {
-  background-color: gray;
-}
-
-
 .box-shadows {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2),
   1px 2px 3px 1px rgba(0, 0, 0, 0.3),
@@ -91,16 +86,6 @@
 }
 
 :not(.box-shadows) {
-  transition: box-shadow 1s cubic-bezier(0.385, 0.590, 0.000, 0.850);
-}
-
-:not(.kanibo.kanibo-body.show) {
-  transition: all 4s linear;
-  /*transition: all 4s cubic-bezier(0.385, 0.590, 0.000, 0.850);*/
-}
-
-.observer-drag {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 1px 2px 3px 1px rgba(0, 0, 0, 0.3), 2px 3px 2px 1px rgba(0, 0, 0, 0.3);
   transition: box-shadow 1s cubic-bezier(0.385, 0.590, 0.000, 0.850);
 }
 
