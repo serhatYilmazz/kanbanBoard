@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as KanbanActions from '../store/kanban.actions';
@@ -13,6 +13,11 @@ export class KanbanAreaComponent implements OnInit {
   sectionsName: string[];
   sections;
   taskId: number;
+
+  @HostListener('window:beforeunload', ['$event']) beforeUnload(event: BeforeUnloadEvent) {
+    this.store.dispatch(new KanbanActions.SaveData());
+    event.returnValue = true;
+  }
 
   constructor(private store: Store<fromApp.AppState>) {
   }
