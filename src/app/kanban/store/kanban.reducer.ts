@@ -20,7 +20,7 @@ const initialState: State = {
         new Kanibo('Eat', 'Eat in kitchen something to stay alive',
           7, new Date(2018, 8, 13),
           null,
-          new Priotrize(1, 1, 1, 1), 0, ),
+          new Priotrize(1, 1, 1, 1), 0),
         new Kanibo('Relax', 'Relax your mind for a while', 8, new Date(2018, 5, 13), null, new Priotrize(1, 1, 1, 1), 0)
       ],
       order: 1
@@ -34,7 +34,7 @@ const initialState: State = {
           4,
           new Date(2018, 1, 13),
           null,
-          new Priotrize(1, 1, 1, 1), 0, ),
+          new Priotrize(1, 1, 1, 1), 0),
         new Kanibo('Java OCA',
           'Oracle Certified Association Preperation',
           5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), 0)
