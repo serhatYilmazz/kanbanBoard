@@ -1,5 +1,3 @@
-import { Priority } from '../../../../enums/enums';
-
 export class Kanibo {
   constructor(public title: string,
               public description: string,

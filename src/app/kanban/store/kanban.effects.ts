@@ -1,5 +1,5 @@
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {map, switchMap, withLatestFrom} from 'rxjs/operators';
+import {catchError, map, switchMap, withLatestFrom} from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Store} from '@ngrx/store';
@@ -8,7 +8,7 @@ import * as KanbanActions from './kanban.actions';
 import * as fromKanban from '../store/kanban.reducer';
 import {environment} from '../../../environments/environment';
 import * as EffectResponseUtil from '../../util/response/effects-response.util';
-import * as Corrections from '../../util/data-correction/corrections';
+import {of} from 'rxjs';
 
 @Injectable()
 export class KanbanEffects {
@@ -49,6 +49,9 @@ export class KanbanEffects {
     withLatestFrom((this.store.select('kanban'))),
     switchMap(([action, state]) => {
       return this.httpClient.put(this.dbUrl, state, {reportProgress: true});
+    }),
+    catchError((error) => {
+      return of(error);
     })
   );
 
