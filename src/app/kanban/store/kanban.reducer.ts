@@ -37,7 +37,7 @@ const initialState: State = {
           new Priotrize(1, 1, 1, 1), 0, ),
         new Kanibo('Java OCA',
           'Oracle Certified Association Preperation',
-          5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), 0, )
+          5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), 0)
       ],
       order: 2
     },
@@ -48,7 +48,7 @@ const initialState: State = {
         new Kanibo('Graduate from University',
           'Graduate from the university to take a Bachelor\'s degree to get a job',
           6,
-          new Date(2018, 2, 13), null, new Priotrize(1, 1, 1, 1), 0, ),
+          new Date(2018, 2, 13), null, new Priotrize(1, 1, 1, 1), 0),
       ],
       order: 3
     }
