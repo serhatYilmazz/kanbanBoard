@@ -61,14 +61,6 @@ export class SaveData implements Action {
   readonly type = ON_SAVE_DATA;
 }
 
-export class SaveAKanibo implements Action {
-  readonly type = ON_SAVE_A_KANIBO;
-
-  constructor(public payload: Kanibo) {
-
-  }
-}
-
 export type KanbanActions =
   SelectKanibo |
   MoveTo |
@@ -77,6 +69,5 @@ export type KanbanActions =
   FetchData |
   SetKanbanBoard |
   SaveData |
-  UpdateKanibo |
-  SaveAKanibo;
+  UpdateKanibo;
 

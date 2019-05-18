@@ -16,12 +16,12 @@ const initialState: State = {
     todo: {
       title: 'TODO',
       list: [
-        new Kanibo('Sleep', 'Sleep in your Bed', 6, new Date(2018, 9, 13), null, new Priotrize(1, 1, 1, 1), 0, false),
+        new Kanibo('Sleep', 'Sleep in your Bed', 6, new Date(2018, 9, 13), null, new Priotrize(1, 1, 1, 1), 0),
         new Kanibo('Eat', 'Eat in kitchen something to stay alive',
           7, new Date(2018, 8, 13),
           null,
-          new Priotrize(1, 1, 1, 1), 0, false),
-        new Kanibo('Relax', 'Relax your mind for a while', 8, new Date(2018, 5, 13), null, new Priotrize(1, 1, 1, 1), 0, false)
+          new Priotrize(1, 1, 1, 1), 0, ),
+        new Kanibo('Relax', 'Relax your mind for a while', 8, new Date(2018, 5, 13), null, new Priotrize(1, 1, 1, 1), 0)
       ],
       order: 1
     },
@@ -34,10 +34,10 @@ const initialState: State = {
           4,
           new Date(2018, 1, 13),
           null,
-          new Priotrize(1, 1, 1, 1), 0, false),
+          new Priotrize(1, 1, 1, 1), 0, ),
         new Kanibo('Java OCA',
           'Oracle Certified Association Preperation',
-          5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), 0, false)
+          5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), 0, )
       ],
       order: 2
     },
@@ -48,7 +48,7 @@ const initialState: State = {
         new Kanibo('Graduate from University',
           'Graduate from the university to take a Bachelor\'s degree to get a job',
           6,
-          new Date(2018, 2, 13), null, new Priotrize(1, 1, 1, 1), 0, false),
+          new Date(2018, 2, 13), null, new Priotrize(1, 1, 1, 1), 0, ),
       ],
       order: 3
     }
@@ -125,20 +125,6 @@ export function kanbanReducer(state, action: KanbanActions.KanbanActions) {
         ...state,
         ...action.payload
       };
-    case KanbanActions.ON_SAVE_A_KANIBO:
-      const onSaveAKaniboState = {...state};
-      const onSaveAKaniboItem = onSaveAKaniboState.section.inProgress.list.find(kanibo => {
-        return kanibo.taskId === action.payload.taskId;
-      });
-      const indexOfOldItem = onSaveAKaniboState.section.inProgress.list.indexOf(onSaveAKaniboItem);
-      const writeOntoOnSaveKaniboState = {
-        ...state.section.inProgress.list[indexOfOldItem],
-        ...action.payload
-      }
-      console.log(state);
-      return {
-        ...state
-      }
     default:
       return state;
   }

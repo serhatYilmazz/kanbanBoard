@@ -5,8 +5,7 @@ export class Kanibo {
               public creationDate: Date,
               public updateDate: Date,
               public priotrize: Priotrize,
-              public spentTime,
-              public isTimerActive ) {
+              public spentTime) {
   }
 }
 
