@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Store} from '@ngrx/store';
 
-import * as fromApp from '../../store/app.reducers';
-import * as KanbanActions from '../../kanban/store/kanban.actions';
-import {HttpClient} from '@angular/common/http';
+
 import {environment} from '../../../environments/environment';
+import {NgForm} from '@angular/forms';
+import {CoreService} from '../service/core.service';
 
 @Component({
   selector: 'app-header',
@@ -13,18 +12,17 @@ import {environment} from '../../../environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private store: Store<fromApp.AppState>,
-              private httpClient: HttpClient) { }
+  constructor(private coreService: CoreService) { }
 
   ngOnInit() {
   }
 
   onFetchData() {
-    this.store.dispatch(new KanbanActions.FetchData());
+    this.coreService.fetchData();
   }
 
   onSaveData() {
-    this.store.dispatch(new KanbanActions.SaveData());
+    this.coreService.saveData();
   }
 
   getSaveCondition(): string {
@@ -34,4 +32,8 @@ export class HeaderComponent implements OnInit {
     return 'auto';
   }
 
+  onSubmit(filterForm: NgForm) {
+    this.coreService.filterByTaskId(+filterForm.value.taskId);
+    filterForm.resetForm();
+  }
 }
