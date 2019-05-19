@@ -6,6 +6,7 @@ import {DroppableService} from './draggable/droppable.service';
 import {DroppableDirective} from './draggable/droppable.directive';
 import {DropzoneDirective} from './draggable/dropzone.directive';
 import {SecondsToMinutePipe} from './pipes/seconds-to-minutes/seconds-to-minute.pipe';
+import {DropdownDirective} from './dropdown/dropdown.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -14,14 +15,16 @@ import {SecondsToMinutePipe} from './pipes/seconds-to-minutes/seconds-to-minute.
     DraggableObserverDirective,
     DroppableDirective,
     DropzoneDirective,
-    SecondsToMinutePipe
+    SecondsToMinutePipe,
+    DropdownDirective
   ],
   exports: [
     DraggableDirective,
     DraggableObserverDirective,
     DroppableDirective,
     DropzoneDirective,
-    SecondsToMinutePipe
+    SecondsToMinutePipe,
+    DropdownDirective
   ],
   providers: [DroppableService]
 })

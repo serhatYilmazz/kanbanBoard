@@ -2,6 +2,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 import * as KanbanActions from '../store/kanban.actions';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-kanban-area',
@@ -15,8 +16,10 @@ export class KanbanAreaComponent implements OnInit {
   taskId: number;
 
   @HostListener('window:beforeunload', ['$event']) beforeUnload(event: BeforeUnloadEvent) {
-    this.store.dispatch(new KanbanActions.SaveData());
-    event.returnValue = true;
+    if (environment.production) {
+      this.store.dispatch(new KanbanActions.SaveData());
+      event.returnValue = true;
+    }
   }
 
   constructor(private store: Store<fromApp.AppState>) {
