@@ -49,13 +49,12 @@ export class KanbanCreateEditComponent implements OnInit {
         if (this.editMode) {
           this.sectionKeyName = param.sectionName;
           this.id = +param.id;
+          this.initializeForm();
         }
       }
     );
 
     this.priorityKeys = Object.keys(Priority);
-    this.initializeForm();
-
   }
 
   onSubmit() {
