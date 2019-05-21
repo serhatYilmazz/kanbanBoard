@@ -53,7 +53,7 @@ export class KanbanCreateEditComponent implements OnInit {
         }
       }
     );
-
+    this.initializeForm();
     this.priorityKeys = Object.keys(Priority);
   }
 
