@@ -3,6 +3,7 @@ import {Kanibo} from './kanibo.model';
 
 import {getDateRange} from '../../../../util/date/date.util';
 import {Portal, TemplatePortal} from '@angular/cdk/portal';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-kanibo',
@@ -22,7 +23,8 @@ export class KaniboComponent implements OnInit, OnDestroy {
 
   timer;
 
-  constructor(private viewContainerRef: ViewContainerRef) { }
+  constructor(private viewContainerRef: ViewContainerRef) {
+  }
 
   ngOnInit() {
   }
@@ -30,7 +32,6 @@ export class KaniboComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     clearInterval(this.timer);
   }
-
 
 
   getLastedTime(date: Date) {
@@ -48,7 +49,8 @@ export class KaniboComponent implements OnInit, OnDestroy {
   startTimer() {
     if (!this.isTimerActive) {
       this.timer = setInterval(() => {
-        this.kanibo.spentTime++;
+        this.kanibo.time.dailySpentTime[this.today()]++;
+        this.kanibo.time.totalSpentTime++;
       }, 1000);
       this.isTimerActive = true;
     } else {
@@ -75,5 +77,14 @@ export class KaniboComponent implements OnInit, OnDestroy {
     if (this.selectedPortal && this.selectedPortal.isAttached) {
       this.selectedPortal.detach();
     }
+  }
+
+  today(): string {
+    return moment().format('YYYY-MM-DD');
+  }
+
+  getLast7Days() {
+    const days = Object.keys(this.kanibo.time.dailySpentTime);
+    return days.reverse().slice(0, 7);
   }
 }

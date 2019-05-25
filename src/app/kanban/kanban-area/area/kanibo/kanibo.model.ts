@@ -5,7 +5,8 @@ export class Kanibo {
               public creationDate: Date,
               public updateDate: Date,
               public priotrize: Priotrize,
-              public spentTime) {
+              public time: Timer
+  ) {
   }
 }
 
@@ -15,3 +16,11 @@ export class Priotrize {
   }
 }
 
+export class Timer {
+  constructor(public totalSpentTime: number,
+              public dailySpentTime: {
+                [key: string]: number
+              }) {
+
+  }
+}

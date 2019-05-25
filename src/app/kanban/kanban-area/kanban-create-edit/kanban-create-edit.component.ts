@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Kanibo, Priotrize} from '../area/kanibo/kanibo.model';
+import {Kanibo, Priotrize, Timer} from '../area/kanibo/kanibo.model';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Store} from '@ngrx/store';
 
 import * as KanbanActions from '../../store/kanban.actions';
 import * as fromKanban from '../../store/kanban.reducer';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import * as moment from 'moment';
 
 import {Priority} from '../../../enums/enums';
 
@@ -81,7 +82,8 @@ export class KanbanCreateEditComponent implements OnInit {
           this.kaniboForm.value.priotrize.importance,
           this.kaniboForm.value.priotrize.effort,
           this.kaniboForm.value.priotrize.priority),
-        0);
+        new Timer(0, {}));
+      newKanibo.time.dailySpentTime[moment().format('YYYY-MM-DD')] = 0
 
       this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));
     }
