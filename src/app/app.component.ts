@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 
 import * as fromApp from './store/app.reducers';
 import * as KanbanActions from './kanban/store/kanban.actions';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-root',

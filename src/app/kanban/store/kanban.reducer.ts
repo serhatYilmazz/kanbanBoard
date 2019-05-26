@@ -1,7 +1,7 @@
 import {SectionModel} from '../section.model';
 
 import * as KanbanActions from './kanban.actions';
-import {Kanibo, Priotrize} from '../kanban-area/area/kanibo/kanibo.model';
+import {Kanibo, Priotrize, Timer} from '../kanban-area/area/kanibo/kanibo.model';
 
 export interface State {
   section: {
@@ -16,12 +16,17 @@ const initialState: State = {
     todo: {
       title: 'TODO',
       list: [
-        new Kanibo('Sleep', 'Sleep in your Bed', 6, new Date(2018, 9, 13), null, new Priotrize(1, 1, 1, 1), 0),
+        new Kanibo('Sleep', 'Sleep in your Bed',
+          6, new Date(2018, 9, 13), null,
+          new Priotrize(1, 1, 1, 1),
+          new Timer(565, {'2019-05-25': 11})),
         new Kanibo('Eat', 'Eat in kitchen something to stay alive',
           7, new Date(2018, 8, 13),
           null,
-          new Priotrize(1, 1, 1, 1), 0),
-        new Kanibo('Relax', 'Relax your mind for a while', 8, new Date(2018, 5, 13), null, new Priotrize(1, 1, 1, 1), 0)
+          new Priotrize(1, 1, 1, 1), new Timer(565, {'2019-05-25': 11})),
+        new Kanibo('Relax', 'Relax your mind for a while',
+          8, new Date(2018, 5, 13), null,
+          new Priotrize(1, 1, 1, 1), new Timer(565, {'2019-05-25': 11}))
       ],
       order: 1
     },
@@ -34,10 +39,10 @@ const initialState: State = {
           4,
           new Date(2018, 1, 13),
           null,
-          new Priotrize(1, 1, 1, 1), 0),
+          new Priotrize(1, 1, 1, 1), new Timer(565, {'2019-05-25': 11})),
         new Kanibo('Java OCA',
           'Oracle Certified Association Preperation',
-          5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), 0)
+          5, new Date(2018, 3, 13), null, new Priotrize(1, 1, 1, 1), new Timer(565, {'2019-05-25': 11}))
       ],
       order: 2
     },
@@ -48,7 +53,7 @@ const initialState: State = {
         new Kanibo('Graduate from University',
           'Graduate from the university to take a Bachelor\'s degree to get a job',
           6,
-          new Date(2018, 2, 13), null, new Priotrize(1, 1, 1, 1), 0),
+          new Date(2018, 2, 13), null, new Priotrize(1, 1, 1, 1), new Timer(565, {'2019-05-25': 11})),
       ],
       order: 3
     }

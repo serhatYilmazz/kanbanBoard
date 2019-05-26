@@ -55,9 +55,20 @@
             </td>
           </tr>
           <tr>
-            <td><b>Time Spent</b></td>
+            <td><b>Time Spent</b>
+              <div class="row">
+                <div class="col-xs-9">
+                  <div class="form-group">
+                    <select class="form-control" #timerPropertySetter>
+                      <option [value]="'total'">Total</option>
+                      <option *ngFor="let day of getLast7Days()" [value]="day">{{getLastedTime(day)}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </td>
             <td>
-              {{kanibo.spentTime | secondsToMinutes}}
+              {{(timerPropertySetter.value === 'total' ? kanibo.time.totalSpentTime : kanibo.time.dailySpentTime[timerPropertySetter.value]) | secondsToMinutes}}
             </td>
           </tr>
           <tr>
@@ -100,10 +111,22 @@
           <div>
             <button class="btn btn-success" (click)="startTimer()">{{!isTimerActive ? 'Start' : 'Pause'}}</button>
           </div>
-          <div>{{kanibo.spentTime | secondsToMinutes}}</div>
+          <div *ngIf="timerSetter.value === 'total'">
+            {{kanibo.time.totalSpentTime | secondsToMinutes}}
+          </div>
+          <div *ngIf="timerSetter.value === 'today'">
+            {{kanibo.time.dailySpentTime[today()] | secondsToMinutes}}
+          </div>
           <div>
             <button class="btn btn-danger" (click)="completeKanibo()">Complete</button>
           </div>
+        </div>
+        <hr>
+        <div class="form-group">
+          <select class="form-control" #timerSetter>
+            <option value="total">Total Spent</option>
+            <option value="today">Today</option>
+          </select>
         </div>
       </div>
     </ng-template>

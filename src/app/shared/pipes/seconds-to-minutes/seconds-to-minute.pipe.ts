@@ -11,6 +11,10 @@ export class SecondsToMinutePipe implements PipeTransform {
     const isHourExists = hour > 0;
     const isMinuteExists = value > 60;
 
+    if (isNaN(value)) {
+      return 0;
+    }
+
     return (isHourExists ? `${hour}:` : ``) + (isMinuteExists ? `${minute % 60}:` : ``) + (value % 60);
   }
 }
