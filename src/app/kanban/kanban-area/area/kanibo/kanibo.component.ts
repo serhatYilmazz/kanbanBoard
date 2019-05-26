@@ -48,6 +48,9 @@ export class KaniboComponent implements OnInit, OnDestroy {
 
   startTimer() {
     if (!this.isTimerActive) {
+      if (isNaN(this.kanibo.time.dailySpentTime[this.today()])) {
+        this.kanibo.time.dailySpentTime[this.today()] = 0;
+      }
       this.timer = setInterval(() => {
         this.kanibo.time.dailySpentTime[this.today()]++;
         this.kanibo.time.totalSpentTime++;

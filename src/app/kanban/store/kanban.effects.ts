@@ -8,9 +8,7 @@ import * as KanbanActions from './kanban.actions';
 import * as fromKanban from '../store/kanban.reducer';
 import {environment} from '../../../environments/environment';
 import * as EffectResponseUtil from '../../util/response/effects-response.util';
-import {Observable, of} from 'rxjs';
-import * as moment from 'moment';
-import {Timer} from '../kanban-area/area/kanibo/kanibo.model';
+import {of} from 'rxjs';
 
 @Injectable()
 export class KanbanEffects {
