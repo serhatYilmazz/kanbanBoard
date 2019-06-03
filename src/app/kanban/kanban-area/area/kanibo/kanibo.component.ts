@@ -1,16 +1,16 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewContainerRef} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Kanibo} from './kanibo.model';
 
 import {getDateRange} from '../../../../util/date/date.util';
 import {Portal, TemplatePortal} from '@angular/cdk/portal';
-import * as moment from 'moment';
+import {TimerService} from '../../../service/timer.service';
 
 @Component({
   selector: 'app-kanibo',
   templateUrl: './kanibo.component.html',
   styleUrls: ['./kanibo.component.css']
 })
-export class KaniboComponent implements OnInit, OnDestroy {
+export class KaniboComponent implements OnInit {
   @Input() kanibo: Kanibo;
   @Input() sectionKeyName: string;
   @Output() eventUp = new EventEmitter<PointerEvent>();
@@ -19,20 +19,14 @@ export class KaniboComponent implements OnInit, OnDestroy {
 
   selectedPortal: Portal<any>;
 
-  isTimerActive = false;
+  constructor(private viewContainerRef: ViewContainerRef,
+              private timerService: TimerService) {
 
-  timer;
-
-  constructor(private viewContainerRef: ViewContainerRef) {
   }
 
   ngOnInit() {
+    this.timerService.initializeTimer(this.kanibo);
   }
-
-  ngOnDestroy(): void {
-    clearInterval(this.timer);
-  }
-
 
   getLastedTime(date: Date) {
     return getDateRange(date);
@@ -47,24 +41,11 @@ export class KaniboComponent implements OnInit, OnDestroy {
   }
 
   startTimer() {
-    if (!this.isTimerActive) {
-      if (isNaN(this.kanibo.time.dailySpentTime[this.today()])) {
-        this.kanibo.time.dailySpentTime[this.today()] = 0;
-      }
-      this.timer = setInterval(() => {
-        this.kanibo.time.dailySpentTime[this.today()]++;
-        this.kanibo.time.totalSpentTime++;
-      }, 1000);
-      this.isTimerActive = true;
-    } else {
-      this.isTimerActive = false;
-      clearInterval(this.timer);
-    }
+    this.timerService.toggleTimer(this.kanibo);
   }
 
   completeKanibo() {
-    this.isTimerActive = false;
-    clearInterval(this.timer);
+    // TODO
   }
 
   isAttached() {
@@ -83,11 +64,10 @@ export class KaniboComponent implements OnInit, OnDestroy {
   }
 
   today(): string {
-    return moment().format('YYYY-MM-DD');
+    return this.timerService.today();
   }
 
   getLast7Days() {
-    const days = Object.keys(this.kanibo.time.dailySpentTime);
-    return days.reverse().slice(0, 7);
+    return this.timerService.getLast7Days(this.kanibo);
   }
 }

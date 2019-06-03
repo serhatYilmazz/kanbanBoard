@@ -9,6 +9,7 @@ import * as fromKanban from '../store/kanban.reducer';
 import {environment} from '../../../environments/environment';
 import * as EffectResponseUtil from '../../util/response/effects-response.util';
 import {of} from 'rxjs';
+import {TimerService} from '../service/timer.service';
 
 @Injectable()
 export class KanbanEffects {
@@ -55,9 +56,19 @@ export class KanbanEffects {
     })
   );
 
+  @Effect({dispatch: false})
+  onMoveData = this.actions$.pipe(
+    ofType(KanbanActions.MOVE_TO),
+    withLatestFrom((this.store.select('kanban'))),
+    switchMap(([action, state]) => {
+      return of(this.timerService.endTimer(state.selectedKanibo, action));
+    })
+  );
+
   constructor(private actions$: Actions,
               private httpClient: HttpClient,
-              private store: Store<fromKanban.State>) {
+              private store: Store<fromKanban.State>,
+              private timerService: TimerService) {
     this.dbUrl = environment.dbUrl;
   }
 }
