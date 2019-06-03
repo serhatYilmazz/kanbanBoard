@@ -82,7 +82,7 @@ export class KanbanCreateEditComponent implements OnInit {
           this.kaniboForm.value.priotrize.importance,
           this.kaniboForm.value.priotrize.effort,
           this.kaniboForm.value.priotrize.priority),
-        new Timer(0, {}));
+        new Timer(0, {}), false);
       newKanibo.time.dailySpentTime[moment().format('YYYY-MM-DD')] = 0
 
       this.store.dispatch(new KanbanActions.AddKanibo(newKanibo));

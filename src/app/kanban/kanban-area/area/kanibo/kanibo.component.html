@@ -1,4 +1,4 @@
-<div class="border" [ngClass]="{'chu': isTimerActive, 'box-shadows': showDescription}">
+<div class="border" [ngClass]="{'chu': kanibo.isTimerActive, 'box-shadows': showDescription}">
   <div (pointerdown)="eventEmit($event)" class="drag fa fa-arrows"></div>
   <div class="kanibo kanibo-heading" [ngClass]="{'show': showDescription}" (click)="adjustShowDescriptions()">
     {{kanibo.title}}
@@ -109,7 +109,7 @@
       <div class="portal">
         <div class="timer">
           <div>
-            <button class="btn btn-success" (click)="startTimer()">{{!isTimerActive ? 'Start' : 'Pause'}}</button>
+            <button class="btn btn-success" (click)="startTimer()">{{!kanibo.isTimerActive ? 'Start' : 'Pause'}}</button>
           </div>
           <div *ngIf="timerSetter.value === 'total'">
             {{kanibo.time.totalSpentTime | secondsToMinutes}}
@@ -132,6 +132,5 @@
     </ng-template>
   </div>
 </div>
-
 
 

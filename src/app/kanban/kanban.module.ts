@@ -14,6 +14,7 @@ import {EffectsModule} from '@ngrx/effects';
 import {KanbanEffects} from './store/kanban.effects';
 import {PriorityMatcherPipe} from '../shared/pipes/priority-matcher/priority-matcher.pipe';
 import {PortalModule} from '@angular/cdk/portal';
+import {TimerService} from './service/timer.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {PortalModule} from '@angular/cdk/portal';
     SharedModule,
     HttpClientModule,
     PortalModule
-  ]
+  ],
+  providers: [TimerService]
 })
 export class KanbanModule {
 

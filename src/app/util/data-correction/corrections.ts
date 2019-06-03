@@ -13,6 +13,18 @@ export function kanban_34_corrections(response) {
   return response;
 }
 
+export function kanban_31_corrections(response) {
+  const keys = Object.keys(response.section);
+  for (const key of keys) {
+    for (const item of response.section[key].list) {
+      if (!item.isTimerActive) {
+        item.isTimerActive = false;
+      }
+    }
+  }
+  return response;
+}
+
 export function kanban_13_corrections(response) {
   const keys = Object.keys(response.section);
   for (const key of keys) {
