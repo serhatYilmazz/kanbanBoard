@@ -99,8 +99,8 @@ export function kanbanReducer(state, action: KanbanActions.KanbanActions) {
       addTodo.list.push(action.payload);
 
       const newAddState = {
-        ...state.section.todo.list,
-        list: addTodo
+        ...state.section.todo,
+        ...addTodo
       };
       let taskId = state.taskId;
       return {

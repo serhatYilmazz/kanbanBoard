@@ -25,7 +25,9 @@ export class KaniboComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.timerService.initializeTimer(this.kanibo);
+    if (this.sectionKeyName === 'inProgress') {
+      this.timerService.initializeTimer(this.kanibo);
+    }
   }
 
   getLastedTime(date: Date) {
