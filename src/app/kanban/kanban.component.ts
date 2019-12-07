@@ -1,7 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {Store} from '@ngrx/store';
-import * as fromApp from '../store/app.reducers';
-import * as KanbanActions from './store/kanban.actions';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-kanban',
